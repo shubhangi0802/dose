@@ -14,11 +14,13 @@ __description__ = metadata.long_description
 from . import copads
 
 # Module imports (in ascending order of module names)
+from . import codonA
 from . import database_calls
 from . import dose
 from . import genetic
 from . import register_machine
 from . import ragaraja
+from . import simulation_calls
 
 # COPADS Class imports (in ascending order of module names, then class names)
 from .copads.lindenmayer import lindenmayer
@@ -48,8 +50,22 @@ from .dose import filter_gender
 from .dose import filter_location
 from .dose import filter_status
 from .dose import filter_vitality
+from .dose import load_one_local_input
+from .dose import load_all_local_input
 from .dose import revive_simulation
 from .dose import simulate
 from .genetic import crossover
 from .genetic import population_constructor
 from .genetic import population_simulate
+from .simulation_calls import close_logging_database
+from .simulation_calls import connect_logging_database
+from .simulation_calls import database_logging
+from .simulation_calls import deploy_populations
+from .simulation_calls import excavate_world
+from .simulation_calls import file_preparation
+from .simulation_calls import ragaraja_activation
+from .simulation_calls import save_script
+from .simulation_calls import sequential_simulator
+from .simulation_calls import simulate_one_cycle
+from .simulation_calls import spawn_populations 
+from .simulation_calls import revive_population

@@ -1,16 +1,16 @@
 '''
-Example 21: This is almost identical to Simulation 01 - most basic 
+Example 29: This is almost identical to Simulation 01 - most basic 
 simulation (using default simulation functions) - but Ragaraja 
-interpretation of genome (on all implemented Ragaraja instructions 
-without new blood option)
+interpretation of genome.
 
 In this simulation,
     - 1 population of 1 organisms
-    - each organism will have 1 chromosome of only 4 bases (A, T, G, C)
+    - each organism will have 1 chromosome of only 10 bases (1 to 0)
     - entire population will be deployed in one eco-cell (0, 0, 0)
     - 10% background point mutation on chromosome of 30 bases
     - no organism movement throughout the simulation
-    - Ragaraja interpretation of genome (without new blood option)
+    - Ragaraja interpretation of genome on all instructions (without 
+    new blood option)
     - 100 generations to be simulated
 '''
 # needed to run this example without prior
@@ -22,35 +22,53 @@ except ImportError: pass
 # Example codes starts from here
 import dose
 
-parameters = {
-              "simulation_name": "21_simulation_01_with_interpretation",
+
+parameters = {# Part 1: Simulation metadata
+              "simulation_name": "29_simulation_01_with_interpretation",
               "population_names": ['pop_01'],
-              "population_locations": [[(0,0,0)]],
-              "deployment_code": 1,
-              "chromosome_bases": ['A', 'T', 'G', 'C'],
-              "background_mutation": 0.1,
-              "additional_mutation": 0,
-              "mutation_type": 'point',
-              "chromosome_size": 300,
-              "genome_size": 1,
-              "max_tape_length": 50,
-              "clean_cell": False,
-              "interpreter": 'ragaraja',
-              "interpret_chromosome": True,
-              "max_codon": 2000,
-              "population_size": 1,
-              "eco_cell_capacity": 100,
+
+              # Part 2: World settings
               "world_x": 5,
               "world_y": 5,
               "world_z": 5,
+              "population_locations": [[(0,0,0)]],
+              "eco_cell_capacity": 100,
+              "deployment_code": 1,
+
+              # Part 3: Population settings
+              "population_size": 1,
+
+              # Part 4: Genetics settings
+              "genome_size": 1,
+              "chromosome_size": 300,
+              "chromosome_bases": ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+              "initial_chromosome": ['9'] * 300,
+
+              # Part 5: Mutation settings
+              "background_mutation": 0.1,
+              "additional_mutation": 0,
+              "mutation_type": 'point',
+              
+              # Part 6: Metabolic settings
+              "interpreter": 'ragaraja',
+              "instruction_size": 3,
+              "ragaraja_version": 98,
+              "base_converter": None,
+              "ragaraja_instructions": [str(i).rjust(3, '0') for i in range(1000)],
+              "max_tape_length": 50,
+              "interpret_chromosome": True,
+              "clean_cell": False,
+              "max_codon": 2000,
+
+              # Part 7: Simulation settings
               "goal": 0,
               "maximum_generations": 100,
+              "eco_buried_frequency": 100,
               "fossilized_ratio": 0.01,
               "fossilized_frequency": 20,
+              
+              # Part 8: Simulation report settings
               "print_frequency": 10,
-              "ragaraja_version": 0.2,
-              "ragaraja_instructions": [],
-              "eco_buried_frequency": 100,
               "database_file": "simulation.db",
               "database_logging_frequency": 1
              }
